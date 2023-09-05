@@ -18,3 +18,4 @@
 - [重建二叉树](https://github.com/ramzeng/leetcode/blob/main/build_tree.go)
 - [用两个栈实现队列](https://github.com/ramzeng/leetcode/blob/main/cqueue.go)
 - [LRU](https://github.com/ramzeng/leetcode/blob/main/lru.go)
+- [斐波那契数列](https://github.com/ramzeng/leetcode/blob/main/fib.go)
