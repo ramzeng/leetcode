@@ -6,43 +6,41 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof
 func levelOrder(root *TreeNode) [][]int {
-	var results [][]int
+	var result [][]int
 
 	if root == nil {
-		return results
+		return result
 	}
 
 	queue := []*TreeNode{root}
 
-	for level := 1; len(queue) > 0; level++ {
-		var tempQueue []*TreeNode
-		var values []int
+	for level := 0; len(queue) > 0; level++ {
 
-		for i := 0; i < len(queue); i++ {
-			node := queue[i]
+		result = append(result, []int{})
+		steps := len(queue)
 
-			values = append(values, node.Val)
+		for step := 0; step < steps; step++ {
+			root = queue[0]
+			queue = queue[1:]
+			result[level] = append(result[level], root.Val)
 
-			if node.Left != nil {
-				tempQueue = append(tempQueue, node.Left)
+			if root.Left != nil {
+				queue = append(queue, root.Left)
 			}
 
-			if node.Right != nil {
-				tempQueue = append(tempQueue, node.Right)
-			}
-		}
-
-		queue = tempQueue
-
-		if level%2 == 0 {
-			for i, j := 0, len(values)-1; i < j; i, j = i+1, j-1 {
-				values[i], values[j] = values[j], values[i]
+			if root.Right != nil {
+				queue = append(queue, root.Right)
 			}
 		}
 
-		results = append(results, values)
+		if level%2 == 1 {
+			for i, j := 0, len(result[level])-1; i < j; i, j = i+1, j-1 {
+				result[level][i], result[level][j] = result[level][j], result[level][i]
+			}
+		}
 	}
 
-	return results
+	return result
 }

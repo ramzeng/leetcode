@@ -4,30 +4,30 @@ package main
 // 深度优先算法
 // https://leetcode.cn/problems/n-ary-tree-postorder-traversal/submissions
 func postorder(root *Node) []int {
-	var results []int
+	var result []int
 
 	if root == nil {
-		return results
+		return result
 	}
 
 	stack := []*Node{root}
 	nodes := make(map[*Node]bool)
 
 	for len(stack) > 0 {
-		node := stack[len(stack)-1]
+		root = stack[len(stack)-1]
 
-		if len(node.Children) == 0 || nodes[node] {
-			results = append(results, node.Val)
+		if root.Children == nil || nodes[root] {
+			result = append(result, root.Val)
 			stack = stack[:len(stack)-1]
 			continue
 		}
 
-		for i := len(node.Children) - 1; i >= 0; i-- {
-			stack = append(stack, node.Children[i])
+		for step := len(root.Children) - 1; step >= 0; step-- {
+			stack = append(stack, root.Children[step])
 		}
 
-		nodes[node] = true
+		nodes[root] = true
 	}
 
-	return results
+	return result
 }

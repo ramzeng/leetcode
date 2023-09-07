@@ -4,26 +4,20 @@ package main
 // 深度优先算法（栈）
 // https://leetcode.cn/problems/binary-tree-inorder-traversal
 func inorderTraversal(root *TreeNode) []int {
-	var results []int
-
-	if root == nil {
-		return results
-	}
-
+	var result []int
 	var stack []*TreeNode
-	node := root
 
-	for node != nil || len(stack) > 0 {
-		for node != nil {
-			stack = append(stack, node)
-			node = node.Left
+	for root != nil || len(stack) > 0 {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
 		}
 
-		node = stack[len(stack)-1]
+		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		results = append(results, node.Val)
-		node = node.Right
+		result = append(result, root.Val)
+		root = root.Right
 	}
 
-	return results
+	return result
 }

@@ -6,35 +6,35 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof
+// https://leetcode.cn/problems/binary-tree-level-order-traversal/
 func levelOrder(root *TreeNode) [][]int {
-	var results [][]int
+	var result [][]int
 
 	if root == nil {
-		return results
+		return result
 	}
 
 	queue := []*TreeNode{root}
 
 	for level := 0; len(queue) > 0; level++ {
-		var tempQueue []*TreeNode
-		results = append(results, []int{})
+		result = append(result, []int{})
+		steps := len(queue)
+		for step := 0; step < steps; step++ {
+			root = queue[0]
+			queue = queue[1:]
 
-		for i := 0; i < len(queue); i++ {
-			node := queue[i]
+			result[level] = append(result[level], root.Val)
 
-			results[level] = append(results[level], node.Val)
-
-			if node.Left != nil {
-				tempQueue = append(tempQueue, node.Left)
+			if root.Left != nil {
+				queue = append(queue, root.Left)
 			}
 
-			if node.Right != nil {
-				tempQueue = append(tempQueue, node.Right)
+			if root.Right != nil {
+				queue = append(queue, root.Right)
 			}
 		}
-
-		queue = tempQueue
 	}
 
-	return results
+	return result
 }

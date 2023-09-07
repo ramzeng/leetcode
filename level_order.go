@@ -6,30 +6,29 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof
 func levelOrder(root *TreeNode) []int {
-	var results []int
+	var result []int
 
 	if root == nil {
-		return results
+		return result
 	}
 
-	var queue []*TreeNode
-
-	queue = append(queue, root)
+	queue := []*TreeNode{root}
 
 	for step := 0; step < len(queue); step++ {
-		node := queue[step]
+		root = queue[step]
 
-		results = append(results, node.Val)
+		result = append(result, root.Val)
 
-		if node.Left != nil {
-			queue = append(queue, node.Left)
+		if root.Left != nil {
+			queue = append(queue, root.Left)
 		}
 
-		if node.Right != nil {
-			queue = append(queue, node.Right)
+		if root.Right != nil {
+			queue = append(queue, root.Right)
 		}
 	}
 
-	return results
+	return result
 }

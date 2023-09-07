@@ -9,33 +9,25 @@ type Node struct {
 // 广度优先算法（队列）
 // https://leetcode.cn/problems/n-ary-tree-level-order-traversal
 func levelOrder(root *Node) [][]int {
-	var results [][]int
+	var result [][]int
 
 	if root == nil {
-		return results
+		return result
 	}
 
-	if root.Children == nil || len(root.Children) == 0 {
-		results = append(results, []int{root.Val})
-	} else {
-		// 广度优先算法
-		queue := []*Node{root}
+	queue := []*Node{root}
 
-		for len(queue) > 0 {
-			var values []int
-			var children []*Node
+	for level := 0; len(queue) > 0; level++ {
+		result = append(result, []int{})
+		steps := len(queue)
 
-			// 清空队列（处理完当前层）
-			for _, node := range queue {
-				values = append(values, node.Val)
-				// 将 children 节点（下一层）压入队列
-				children = append(children, node.Children...)
-			}
-
-			queue = children
-			results = append(results, values)
+		for step := 0; step < steps; step++ {
+			root = queue[0]
+			queue = queue[1:]
+			result[level] = append(result[level], root.Val)
+			queue = append(queue, root.Children...)
 		}
 	}
 
-	return results
+	return result
 }

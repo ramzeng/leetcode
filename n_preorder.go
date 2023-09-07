@@ -4,23 +4,24 @@ package main
 // 深度优先算法
 // https://leetcode.cn/problems/n-ary-tree-preorder-traversal
 func preorder(root *Node) []int {
-	var results []int
+	var result []int
 
 	if root == nil {
-		return results
+		return result
 	}
 
 	stack := []*Node{root}
 
 	for len(stack) > 0 {
-		node := stack[len(stack)-1]
+		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		results = append(results, node.Val)
 
-		for i := len(node.Children) - 1; i >= 0; i-- {
-			stack = append(stack, node.Children[i])
+		result = append(result, root.Val)
+
+		for step := len(root.Children) - 1; step >= 0; step-- {
+			stack = append(stack, root.Children[step])
 		}
 	}
 
-	return results
+	return result
 }

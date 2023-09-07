@@ -4,34 +4,29 @@ package main
 // 深度优先算法（栈）
 // https://leetcode.cn/problems/binary-tree-postorder-traversal
 func postorderTraversal(root *TreeNode) []int {
-	var results []int
+	var result []int
 
-	if root == nil {
-		return results
-	}
-
-	node := root
 	var preNode *TreeNode
 	var stack []*TreeNode
 
-	for node != nil || len(stack) > 0 {
-		for node != nil {
-			stack = append(stack, node)
-			node = node.Left
+	for root != nil || len(stack) > 0 {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
 		}
 
-		node = stack[len(stack)-1]
+		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 
-		if node.Right == nil || node.Right == preNode {
-			results = append(results, node.Val)
-			preNode = node
-			node = nil
+		if root.Right == nil || root.Right == preNode {
+			result = append(result, root.Val)
+			preNode = root
+			root = nil
 		} else {
-			stack = append(stack, node)
-			node = node.Right
+			stack = append(stack, root)
+			root = root.Right
 		}
 	}
 
-	return results
+	return result
 }
