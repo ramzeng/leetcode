@@ -26,4 +26,4 @@
 - [N 叉树拷贝](https://github.com/ramzeng/leetcode/blob/main/n_tree_copy.go)
 - [恢复二叉搜索树](https://github.com/ramzeng/leetcode/blob/main/recover_tree.go)
 - [左旋转字符串](https://github.com/ramzeng/leetcode/blob/main/reverse_left_words.go)
-- [反转链表](https://leetcode.cn/problems/fan-zhuan-lian-biao-lcof)
+- [反转链表](https://github.com/ramzeng/leetcode/blob/main/reverse_list.go)
