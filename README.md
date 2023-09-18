@@ -28,3 +28,4 @@
 - [左旋转字符串](https://github.com/ramzeng/leetcode/blob/main/reverse_left_words.go)
 - [反转链表](https://github.com/ramzeng/leetcode/blob/main/reverse_list.go)
 - [LRU 无依赖](https://github.com/ramzeng/leetcode/blob/main/lru_no_dependencies.go)
+- [删除链表节点](https://github.com/ramzeng/leetcode/blob/main/delete_node.go)
