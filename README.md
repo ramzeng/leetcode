@@ -29,3 +29,4 @@
 - [反转链表](https://github.com/ramzeng/leetcode/blob/main/reverse_list.go)
 - [LRU 无依赖](https://github.com/ramzeng/leetcode/blob/main/lru_no_dependencies.go)
 - [删除链表节点](https://github.com/ramzeng/leetcode/blob/main/delete_node.go)
+- [链表中倒数第 K 个节点](https://github.com/ramzeng/leetcode/blob/main/get_kth_from_end.go)
