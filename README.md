@@ -32,4 +32,4 @@
 - [链表中倒数第 K 个节点](https://github.com/ramzeng/leetcode/blob/main/get_kth_from_end.go)
 - [训练计划](https://github.com/ramzeng/leetcode/blob/main/training_plan.go)
 - [训练计划 IV](https://github.com/ramzeng/leetcode/blob/main/training_plan_iv.go)
-- [LFU](https://github.com/ramzeng/leetcode/blob/main/lfu.go)
+- [LFU](https://github.com/ramzeng/leetcode/blob/main/lfu_no_dependencies.go)
