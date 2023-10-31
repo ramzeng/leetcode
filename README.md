@@ -33,3 +33,4 @@
 - [训练计划](https://github.com/ramzeng/leetcode/blob/main/training_plan.go)
 - [训练计划 IV](https://github.com/ramzeng/leetcode/blob/main/training_plan_iv.go)
 - [LFU](https://github.com/ramzeng/leetcode/blob/main/lfu_no_dependencies.go)
+- [最大数](https://github.com/ramzeng/leetcode/blob/main/largest_number.go)
