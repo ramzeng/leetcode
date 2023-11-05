@@ -36,3 +36,4 @@
 - [最大数](https://github.com/ramzeng/leetcode/blob/main/largest_number.go)
 - [接雨水](https://github.com/ramzeng/leetcode/blob/main/trap.go)
 - [重排链表](https://github.com/ramzeng/leetcode/blob/main/reorder_list.go)
+- [重复的DNA序列](https://github.com/ramzeng/leetcode/blob/main/find_repeated_dna_sequences.go)
