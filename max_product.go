@@ -8,9 +8,7 @@ func main() {
 
 // https://leetcode.cn/problems/maximum-product-of-word-lengths
 func maxProduct(words []string) int {
-	masks := make(map[int]int)
-	var keys []int
-
+	var masks []int
 	var answer int
 
 	// 预处理，加快下面的比较过程
@@ -25,26 +23,13 @@ func maxProduct(words []string) int {
 			mask |= 1 << (char - 'a')
 		}
 
-		if len(word) > masks[mask] {
-			masks[mask] = len(word)
-			keys = append(keys, mask)
-		}
+		masks = append(masks, mask)
 	}
 
-	// map 没有顺序，所以有无效遍历
-	//for left, _ := range masks {
-	//	for right, _ := range masks {
-	//		if left&right == 0 && masks[left]*masks[right] > answer {
-	//			answer = masks[left] * masks[right]
-	//		}
-	//	}
-	//}
-
-	// 利用上面冗余的键切片，加快比较过程
-	for left, _ := range keys {
-		for right := left + 1; right < len(keys); right++ {
-			if keys[left]&keys[right] == 0 && masks[keys[left]]*masks[keys[right]] > answer {
-				answer = masks[keys[left]] * masks[keys[right]]
+	for left, _ := range masks {
+		for right := left + 1; right < len(masks); right++ {
+			if masks[left]&masks[right] == 0 && len(words[left])*len(words[right]) > answer {
+				answer = len(words[left]) * len(words[right])
 			}
 		}
 	}
