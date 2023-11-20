@@ -41,3 +41,5 @@
 - [咒语和药水的成功对数](https://github.com/ramzeng/leetcode/blob/main/successful_pairs.go)
 - [在排序数组中查找元素的第一个和最后一个位置](https://github.com/ramzeng/leetcode/blob/main/search_range.go)
 - [字符串相减](https://github.com/ramzeng/leetcode/blob/main/sub_strings.go)
+- [字符串相乘](https://github.com/ramzeng/leetcode/blob/main/mul_strings.go)
+- [字符串相除](https://github.com/ramzeng/leetcode/blob/main/div_strings.go)

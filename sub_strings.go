@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(subStrings("77", "70"))
+	fmt.Println(subStrings("760", "700"))
 }
 
 func subStrings(num1 string, num2 string) string {
@@ -27,8 +27,6 @@ func subStrings(num1 string, num2 string) string {
 
 		borrow = x - y - borrow
 
-		// (3+10)%10=3
-		// (-3+10)%10=7
 		answer = strconv.Itoa((borrow+10)%10) + answer
 
 		if borrow < 0 {
