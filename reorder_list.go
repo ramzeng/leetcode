@@ -15,7 +15,7 @@ func reorderList(head *ListNode) {
 	}
 
 	var nodes []*ListNode
-	
+
 	// 借助外部存储，实现下标访问
 	for node := head; node != nil; node = node.Next {
 		nodes = append(nodes, node)
