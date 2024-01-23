@@ -9,9 +9,7 @@ func minSubArrayLen(target int, nums []int) int {
 	var slow, fast, sum int
 	answer := math.MaxInt
 
-	n := len(nums)
-
-	for ; fast < n; fast++ {
+	for ; fast < len(nums); fast++ {
 		sum += nums[fast]
 
 		for sum >= target {
