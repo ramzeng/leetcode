@@ -5,6 +5,11 @@
  */
 
 // @lc code=start
+var (
+	dx = [4]int{1, 0, -1, 0}
+	dy = [4]int{0, 1, 0, -1}
+)
+
 func maxAreaOfIsland(grid [][]int) int {
 	if len(grid) == 0 {
 		return 0
@@ -19,7 +24,13 @@ func maxAreaOfIsland(grid [][]int) int {
 
 		grid[i][j] = 0
 
-		return dfs(grid, i-1, j, row, col) + dfs(grid, i+1, j, row, col) + dfs(grid, i, j-1, row, col) + dfs(grid, i, j+1, row, col) + 1
+		count := 0
+
+		for x := 0; x < 4; x++ {
+			count += dfs(grid, i+dx[x], j+dy[x], row, col)
+		}
+
+		return count + 1
 	}
 
 	answer := 0

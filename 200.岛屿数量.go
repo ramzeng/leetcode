@@ -5,6 +5,11 @@
  */
 
 // @lc code=start
+var (
+	dx = [4]int{1, 0, -1, 0}
+	dy = [4]int{0, 1, 0, -1}
+)
+
 func numIslands(grid [][]byte) int {
 	if len(grid) == 0 {
 		return 0
@@ -19,10 +24,9 @@ func numIslands(grid [][]byte) int {
 
 		grid[i][j] = '0'
 
-		dfs(grid, i-1, j, row, col)
-		dfs(grid, i+1, j, row, col)
-		dfs(grid, i, j-1, row, col)
-		dfs(grid, i, j+1, row, col)
+		for x := 0; x < 4; x++ {
+			dfs(grid, i+dx[x], j+dy[x], row, col)
+		}
 	}
 
 	answer := 0
