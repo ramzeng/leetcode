@@ -10,12 +10,13 @@ func findMin(nums []int) int {
 	left, right := 0, n-2
 
 	for left <= right {
-		mid := left+(right-left)/2
+		mid := left + (right-left)/2
 
+		// 跟右侧第一个比
 		if nums[mid] > nums[right+1] {
-			left = mid+1
+			left = mid + 1
 		} else if nums[mid] < nums[right+1] {
-			right = mid-1
+			right = mid - 1
 		} else {
 			right--
 		}
@@ -23,5 +24,6 @@ func findMin(nums []int) int {
 
 	return nums[left]
 }
+
 // @lc code=end
 

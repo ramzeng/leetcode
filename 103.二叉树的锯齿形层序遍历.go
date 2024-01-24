@@ -19,15 +19,18 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 	}
 
 	var answers [][]int
-	queue := []*TreeNode{root}
 
-	for even := false; len(queue) > 0; even = !even {
-		size := len(queue)
+	currentLevel := []*TreeNode{root}
+
+	for even := false; len(currentLevel) > 0; even = !even {
+
+		var nextLevel []*TreeNode
+		size := len(currentLevel)
 		answer := make([]int, size)
 
 		for i := 0; i < size; i++ {
-			node := queue[0]
-			queue = queue[1:]
+			node := currentLevel[0]
+			currentLevel = currentLevel[1:]
 
 			if !even {
 				answer[i] = node.Val
@@ -36,18 +39,20 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 			}
 
 			if node.Left != nil {
-				queue = append(queue, node.Left)
+				nextLevel = append(nextLevel, node.Left)
 			}
 
 			if node.Right != nil {
-				queue = append(queue, node.Right)
+				nextLevel = append(nextLevel, node.Right)
 			}
 		}
 
 		answers = append(answers, answer)
+		currentLevel = nextLevel
 	}
 
 	return answers
 }
+
 // @lc code=end
 

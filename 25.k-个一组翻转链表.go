@@ -40,5 +40,6 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 
 	return dummyNode.Next
 }
+
 // @lc code=end
 

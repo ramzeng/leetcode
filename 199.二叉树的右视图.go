@@ -20,27 +20,26 @@ func rightSideView(root *TreeNode) []int {
 
 	var nodes []int
 
-	queue := []*TreeNode{root}
+	currentLevel := []*TreeNode{root}
 
-	for len(queue) > 0 {
-		nodes = append(nodes, queue[len(queue)-1].Val)
-		size := len(queue)
-
-		for i := 0; i < size; i++ {
-			node := queue[0]
-			queue = queue[1:]
-
+	for len(currentLevel) > 0 {
+		nodes = append(nodes, currentLevel[len(currentLevel)-1].Val)
+		var nextLevel []*TreeNode
+		for _, node := range currentLevel {
 			if node.Left != nil {
-				queue = append(queue, node.Left)
+				nextLevel = append(nextLevel, node.Left)
 			}
 
 			if node.Right != nil {
-				queue = append(queue, node.Right)
+				nextLevel = append(nextLevel, node.Right)
 			}
 		}
+
+		currentLevel = nextLevel
 	}
 
 	return nodes
 }
+
 // @lc code=end
 
