@@ -10,29 +10,39 @@ func longestPalindrome(s string) string {
 		return s
 	}
 
-	var start, end int
+	// 中心扩散法，枚举中点
+	// left, right 记录答案区间
+	var left, right int
 
 	for i := 0; i < len(s); i++ {
-		x := expandAroundCenter(s, i, i)
-		y := expandAroundCenter(s, i, i+1)
+		// 奇数情况
+		x := expandFromCenter(s, i, i)
+		// 偶数情况
+		y := expandFromCenter(s, i, i+1)
+		// 求最大值
 		z := max(x, y)
 
-		if z > end-start {
-			start = i - (z-1)/2
-			end = i + z/2
+		if z > right-left {
+			// 需要写 z-1，不然奇数会有问题
+			left = i - (z-1)/2
+			right = i + z/2
 		}
 	}
 
-	return s[start:end+1]
+	return s[left : right+1]
 }
 
-func expandAroundCenter(s string, left, right int) int {
-	for ; left >= 0 && right < len(s); left, right = left-1, right+1 {
+func expandFromCenter(s string, left, right int) int {
+	for left >= 0 && right < len(s) {
 		if s[left] != s[right] {
 			break
 		}
+
+		left--
+		right++
 	}
 
+	// 去掉中间字符
 	return right - left - 1
 }
 

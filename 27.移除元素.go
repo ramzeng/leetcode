@@ -9,15 +9,14 @@ func removeElement(nums []int, val int) int {
 	var slow, fast int
 
 	for ; fast < len(nums); fast++ {
-		if nums[fast] == val {
-			continue
+		if nums[fast] != val {
+			nums[slow] = nums[fast]
+			slow++
 		}
-
-		nums[slow] = nums[fast]
-		slow++
 	}
 
 	return slow
 }
+
 // @lc code=end
 

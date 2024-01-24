@@ -13,14 +13,15 @@
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	// 链表w
 	var sum, carry int
-
+	// 虚拟头节点
 	dummyNode := &ListNode{}
 	current := dummyNode
 
+	// 累加
 	for l1 != nil || l2 != nil {
 		var x, y int
-
 		if l1 != nil {
 			x = l1.Val
 			l1 = l1.Next
@@ -31,18 +32,21 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			l2 = l2.Next
 		}
 
-		sum = x+y+carry
+		// 计算当前和余数
+		sum = x + y + carry
 		sum, carry = sum%10, sum/10
-
+		// 迭代向前
 		current.Next = &ListNode{Val: sum}
 		current = current.Next
 	}
 
+	// 如果余数大于 0
 	if carry > 0 {
 		current.Next = &ListNode{Val: carry}
 	}
 
 	return dummyNode.Next
 }
+
 // @lc code=end
 
