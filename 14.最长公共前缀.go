@@ -6,18 +6,23 @@
 
 // @lc code=start
 func longestCommonPrefix(strs []string) string {
-	prefix := strs[0]
+	// 找到最长的字符串作为基准值
+	var prefix string
+	for _, str := range strs {
+		if len(str) > len(prefix) {
+			prefix = str
+		}
+	}
 
-	for i := 0; i < len(strs); i++ {
-		var j int
-
-		for ; j < len(prefix) && j < len(strs[i]); j++ {
-			if strs[i][j] != prefix[j] {
+	for _, str := range strs {
+		var i int
+		for ; i < len(str) && i < len(prefix); i++ {
+			if str[i] != prefix[i] {
 				break
 			}
 		}
 
-		prefix = prefix[:j]
+		prefix = prefix[:i]
 	}
 
 	return prefix
