@@ -7,13 +7,13 @@
 // @lc code=start
 func maxArea(height []int) int {
 	// 相向指针
-
+	// 数组题，求最大值
 	n := len(height)
 	maxArea := math.MinInt
 	left, right := 0, n-1
 
 	for left < right {
-		area := min(height[left], height[right]) * (right-left)
+		area := min(height[left], height[right]) * (right - left)
 		maxArea = max(maxArea, area)
 
 		if height[left] < height[right] {
@@ -25,5 +25,6 @@ func maxArea(height []int) int {
 
 	return maxArea
 }
+
 // @lc code=end
 

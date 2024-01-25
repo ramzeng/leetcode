@@ -10,6 +10,7 @@ func longestPalindrome(s string) string {
 		return s
 	}
 
+	// 字符串，求最大值
 	// 中心扩散法，枚举中点
 	// left, right 记录答案区间
 	var left, right int

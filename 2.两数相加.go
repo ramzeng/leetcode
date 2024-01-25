@@ -13,7 +13,7 @@
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	// 链表w
+	// 链表
 	var sum, carry int
 	// 虚拟头节点
 	dummyNode := &ListNode{}

@@ -6,7 +6,9 @@
 
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
+	// 字符串，求最大值
 	// 同向快慢指针
+	// 滑动窗口
 	// viewed 数组记录之前的字符串个数
 	// slow，fast 快慢指针
 	// key 为 ascii，value 为个数

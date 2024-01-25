@@ -10,12 +10,15 @@ import "sort"
 
 // @lc code=start
 func threeSum(nums []int) [][]int {
+	// 数组，求 target，组合
+	// 排序
 	sort.Ints(nums)
 
+	// 相向双指针
+	var paths [][]int
 	n := len(nums)
-	var answers [][]int
 
-	for i := 0; i < n; i++ {
+	for i := 0; i < len(nums); i++ {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
@@ -24,7 +27,7 @@ func threeSum(nums []int) [][]int {
 
 		for left < right {
 			if nums[i]+nums[left]+nums[right] == 0 {
-				answers = append(answers, []int{nums[i], nums[left], nums[right]})
+				paths = append(paths, []int{nums[i], nums[left], nums[right]})
 
 				for left < right && nums[left] == nums[left+1] {
 					left++
@@ -43,7 +46,7 @@ func threeSum(nums []int) [][]int {
 		}
 	}
 
-	return answers
+	return paths
 }
-// @lc code=end
 
+// @lc code=end

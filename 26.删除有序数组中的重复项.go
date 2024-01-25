@@ -6,22 +6,37 @@
 
 // @lc code=start
 func removeDuplicates(nums []int) int {
-	var f func(k int) int
+	// 快慢指针也能做
+	// 数组，快慢指针
+	var slow, fast int
 
-	f = func(k int) int {
-		u := 0
-
-		for i := 0; i < len(nums); i++ {
-			if u < k || nums[u-k] != nums[i] {
-				nums[u] = nums[i]
-				u++
-			}
+	for ; fast < len(nums); fast++ {
+		if nums[fast] == nums[slow] {
+			continue
 		}
 
-		return u
+		slow++
+		nums[slow] = nums[fast]
 	}
 
-	return f(1)
+	// slow 是下标，答案需要是长度，所以要 +1
+	return slow + 1
+
+	// 数组题，删除有序数组中的重复项，保留 0 个，模版题
+	// f := func(k int) int {
+	// 	u := 0
+	// 	for i := 0; i < len(nums); i++ {
+	// 		if u < k || nums[u-k] != nums[i] {
+	// 			nums[u] = nums[i]
+	// 			u++
+	// 		}
+	// 	}
+
+	// 	return u
+	// }
+
+	// return f(1)
 }
+
 // @lc code=end
 

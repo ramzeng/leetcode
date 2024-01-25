@@ -6,23 +6,35 @@
 
 // @lc code=start
 func strStr(haystack string, needle string) int {
-	for i := 0; i < len(haystack); i++ {
-		if haystack[i] == needle[0] {
-			var j int
+	// 字符串，字符串查找
+	n := len(haystack)
+	for i := 0; i < n; i++ {
+		// 判断第一个字符是否一致
+		if haystack[i] != needle[0] {
+			continue
+		}
 
-			for ; j < len(needle) && i+j < len(haystack); j++ {
-				if haystack[i+j] != needle[j] {
-					break
-				}
-			}
+		// 判断剩余长度够不够匹配
+		if n-i < len(needle) {
+			return -1
+		}
 
-			if j == len(needle) {
-				return i
+		// 往后匹配
+		j := 0
+		for ; j < len(needle); j++ {
+			if haystack[i+j] != needle[j] {
+				break
 			}
+		}
+
+		// 是否完全匹配
+		if j == len(needle) {
+			return i
 		}
 	}
 
 	return -1
 }
+
 // @lc code=end
 

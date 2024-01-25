@@ -23,7 +23,7 @@ func permute(nums []int) [][]int {
 			if !viewed[j] {
 				answer = append(answer, nums[j])
 				viewed[j] = true
-				dfs(i+1)
+				dfs(i + 1)
 				viewed[j] = false
 				answer = answer[:len(answer)-1]
 			}
@@ -32,7 +32,8 @@ func permute(nums []int) [][]int {
 
 	dfs(0)
 
-	return  answers
+	return answers
 }
+
 // @lc code=end
 

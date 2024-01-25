@@ -6,16 +6,12 @@
 
 // @lc code=start
 func letterCombinations(digits string) []string {
+	// 回溯，组合问题
 	if len(digits) == 0 {
 		return nil
 	}
 
-	var answers []string
-	var answer []byte
-	var dfs func(i int)
-
-	n := len(digits)
-	mapping := []string{
+	strings := []string{
 		"",
 		"",
 		"abc",
@@ -28,22 +24,37 @@ func letterCombinations(digits string) []string {
 		"wxyz",
 	}
 
+	// 保存路径
+	var path []byte
+	var paths []string
+
+	// 输入的号码长度，也是 path 的长度
+	n := len(digits)
+
+	// 深度遍历
+	var dfs func(i int)
 	dfs = func(i int) {
+		// 边界情况，收集答案
 		if i == n {
-			answers = append(answers, string(answer))
+			paths = append(paths, string(path))
 			return
 		}
 
-		for _, r := range mapping[int(digits[i]-'0')] {
-			answer = append(answer, byte(r))
-			dfs(i+1)
-			answer = answer[:len(answer)-1]
+		// 从结果出发
+		// i 代表在 digits 中第 i+1 个值
+		// j 代表 digits[i] 映射的字符串中的第 j+1 个字符
+		str := strings[int(digits[i]-'0')]
+		for j := 0; j < len(str); j++ {
+			path = append(path, str[j])
+			dfs(i + 1)
+			path = path[:len(path)-1]
 		}
 	}
 
 	dfs(0)
 
-	return answers
+	return paths
 }
+
 // @lc code=end
 
