@@ -6,24 +6,26 @@
 
 // @lc code=start
 func trap(height []int) int {
-	var preMax, sufMax, area int
-	n := len(height)
-	left, right := 0, n-1
+	// 相向双指针，维护前缀最大和后缀最大
+	var preMax, sufMax, answer int
 
-	for left < right {
+	left, right := 0, len(height)-1
+
+	for left <= right {
 		preMax = max(preMax, height[left])
 		sufMax = max(sufMax, height[right])
 
 		if preMax < sufMax {
-			area += preMax-height[left]
+			answer += preMax - height[left]
 			left++
 		} else {
-			area += sufMax-height[right]
+			answer += sufMax - height[right]
 			right--
 		}
 	}
 
-	return area
+	return answer
 }
+
 // @lc code=end
 
