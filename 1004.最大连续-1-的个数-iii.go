@@ -6,10 +6,14 @@
 
 // @lc code=start
 func longestOnes(nums []int, k int) int {
+	// 滑动窗口
+	var answer int
+	var count int
 	var slow, fast int
-	var count, maxCount int
 
-	for ; fast < len(nums); fast++ {
+	n := len(nums)
+
+	for ; fast < n; fast++ {
 		if nums[fast] == 0 {
 			count++
 		}
@@ -22,10 +26,11 @@ func longestOnes(nums []int, k int) int {
 			slow++
 		}
 
-		maxCount = max(maxCount, fast-slow+1)
+		answer = max(answer, fast-slow+1)
 	}
 
-	return maxCount
+	return answer
 }
+
 // @lc code=end
 

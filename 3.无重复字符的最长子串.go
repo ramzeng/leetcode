@@ -13,9 +13,12 @@ func lengthOfLongestSubstring(s string) int {
 	// slow，fast 快慢指针
 	// key 为 ascii，value 为个数
 	var viewed [128]int
-	var slow, fast, answer int
+	var slow, fast int
+	var answer int
 
-	for ; fast < len(s); fast++ {
+	n := len(s)
+
+	for ; fast < n; fast++ {
 		viewed[s[fast]]++
 
 		for viewed[s[fast]] > 1 {

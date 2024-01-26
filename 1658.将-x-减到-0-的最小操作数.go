@@ -8,18 +8,21 @@
 func minOperations(nums []int, x int) int {
 	target := -x
 
-	for i := 0; i < len(nums); i++ {
-		target += nums[i]
+	for _, num := range nums {
+		target += num
 	}
 
 	if target < 0 {
 		return -1
 	}
 
-	var slow, fast, sum int
-	maxCount := -1
+	var slow, fast int
+	var answer, sum int
+	answer = -1
 
-	for ; fast < len(nums); fast++ {
+	n := len(nums)
+
+	for ; fast < n; fast++ {
 		sum += nums[fast]
 
 		for sum > target {
@@ -28,15 +31,16 @@ func minOperations(nums []int, x int) int {
 		}
 
 		if sum == target {
-			maxCount = max(maxCount, fast-slow+1)
+			answer = max(answer, fast-slow+1)
 		}
 	}
 
-	if maxCount < 0 {
+	if answer == -1 {
 		return -1
 	}
 
-	return len(nums)-maxCount
+	return n - answer
 }
+
 // @lc code=end
 

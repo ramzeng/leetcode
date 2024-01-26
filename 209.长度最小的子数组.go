@@ -6,10 +6,13 @@
 
 // @lc code=start
 func minSubArrayLen(target int, nums []int) int {
-	var slow, fast, sum int
-	answer := math.MaxInt
+	var slow, fast int
+	var sum, answer int
 
-	for ; fast < len(nums); fast++ {
+	n := len(nums)
+	answer = n + 1
+
+	for ; fast < n; fast++ {
 		sum += nums[fast]
 
 		for sum >= target {
@@ -19,11 +22,12 @@ func minSubArrayLen(target int, nums []int) int {
 		}
 	}
 
-	if answer < math.MaxInt {
-		return answer
-	} else {
+	if answer > n {
 		return 0
+	} else {
+		return answer
 	}
 }
+
 // @lc code=end
 

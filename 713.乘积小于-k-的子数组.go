@@ -10,10 +10,14 @@ func numSubarrayProductLessThanK(nums []int, k int) int {
 		return 0
 	}
 
-	var prod, slow, fast, answer int
-	prod = 1
+	var slow, fast int
+	var prod int
+	var answer int
 
-	for ; fast < len(nums); fast++ {
+	prod = 1
+	n := len(nums)
+
+	for ; fast < n; fast++ {
 		prod *= nums[fast]
 
 		for prod >= k {
@@ -21,10 +25,11 @@ func numSubarrayProductLessThanK(nums []int, k int) int {
 			slow++
 		}
 
-		answer += fast-slow+1
+		answer += fast - slow + 1
 	}
 
 	return answer
 }
+
 // @lc code=end
 
