@@ -7,6 +7,7 @@
 // @lc code=start
 func rob(nums []int) int {
 	// 朴素做法
+	// 0 1 背包问题
 	// var dfs func(i int) int
 
 	// n := len(nums)
@@ -37,14 +38,22 @@ func rob(nums []int) int {
 	// return dfs(len(nums)-1)
 
 	// 递推做法
-	n := len(nums)
-	answers := make([]int, n+2)
+	// n := len(nums)
+	// answers := make([]int, n+2)
 
+	// for i := 0; i < n; i++ {
+	// 	answers[i+2] = max(answers[i+1], answers[i]+nums[i])
+	// }
+
+	// return answers[n+1]
+
+	n := len(nums)
+	dp := make([]int, n+2)
 	for i := 0; i < n; i++ {
-		answers[i+2] = max(answers[i+1], answers[i]+nums[i])
+		dp[i+2] = max(dp[i+1], dp[i]+nums[i])
 	}
 
-	return answers[n+1]
+	return dp[n+1]
 }
 
 // @lc code=end

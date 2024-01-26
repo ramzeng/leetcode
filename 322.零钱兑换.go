@@ -53,26 +53,38 @@ func coinChange(coins []int, amount int) int {
 	// }
 
 	// 递推做法
+	// dp[i][j] i 表示前 i 枚硬币，j 表示总金额，值表示从前 i 枚选的最少的硬币个数
 	n := len(coins)
-	answers := make([]int, amount+1)
+	dp := make([][]int, n+1)
 
-	for i, _ := range answers {
-		answers[i] = math.MaxInt / 2
+	for i := 0; i <= n; i++ {
+		dp[i] = make([]int, amount+1)
+		dp[i][0] = 0
 	}
 
-	answers[0] = 0
+	for i := 0; i < amount+1; i++ {
+		dp[0][i] = amount + 1
+	}
+
+	dp[0][0] = 0
 
 	for i := 0; i < n; i++ {
-		for j := coins[i]; j <= amount; j++ {
-			answers[j] = min(answers[j], answers[j-coins[i]]+1)
+		for j := 0; j <= amount; j++ {
+			dp[i+1][j] = dp[i][j]
+
+			if j >= coins[i] {
+				// 完全背包，dp[i+1][j-coins[i]]+1
+				// 01 背包, dp[i][j-coins[i]]+1
+				dp[i+1][j] = min(dp[i][j], dp[i+1][j-coins[i]]+1)
+			}
 		}
 	}
 
-	if answers[amount] == math.MaxInt/2 {
-		return -1
-	} else {
-		return answers[amount]
+	if dp[n][amount] < amount+1 {
+		return dp[n][amount]
 	}
+
+	return -1
 }
 
 // @lc code=end

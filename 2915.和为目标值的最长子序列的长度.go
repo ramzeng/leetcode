@@ -8,51 +8,34 @@
 func lengthOfLongestSubsequence(nums []int, target int) int {
 	// 0 / 1 背包，最大值
 	n := len(nums)
+	// dp[i][j] 在前 i 个选，和为 j 的情况下，数字的个数
+	dp := make([][]int, n+1)
 
-	// 缓存结果
-	cached := make([][]int, n)
-
-	for i, _ := range cached {
-		cached[i] = make([]int, target+1)
-
-		for j, _ := range cached[i] {
-			// 从前 i 个选，和为 j 的最大被选数字数量
-			cached[i][j] = -1
-		}
+	for i := 0; i < n+1; i++ {
+		dp[i] = make([]int, target+1)
+		dp[i][0] = 0
 	}
 
-	var dfs func(i int, target int) int
-	dfs = func(i int, target int) int {
-		if i < 0 {
-			if target == 0 {
-				return 0
+	for i := 0; i < target+1; i++ {
+		dp[0][i] = math.MinInt
+	}
+
+	dp[0][0] = 0
+
+	for i := 0; i < n; i++ {
+		for j := 0; j <= target; j++ {
+			dp[i+1][j] = dp[i][j]
+
+			if j >= nums[i] {
+				dp[i+1][j] = max(dp[i][j], dp[i][j-nums[i]]+1)
 			}
-
-			return math.MinInt
 		}
-
-		if cached[i][target] != -1 {
-			return cached[i][target]
-		}
-
-		var answer int
-
-		if target < nums[i] {
-			answer = dfs(i-1, target)
-		} else {
-			answer = max(dfs(i-1, target), dfs(i-1, target-nums[i])+1)
-		}
-
-		cached[i][target] = answer
-		return answer
 	}
 
-	answer := dfs(n-1, target)
-
-	if answer < 0 {
-		return -1
+	if dp[n][target] > 0 {
+		return dp[n][target]
 	} else {
-		return answer
+		return -1
 	}
 }
 
