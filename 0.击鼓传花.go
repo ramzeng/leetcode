@@ -5,22 +5,19 @@ import (
 	"time"
 )
 
-func main() {
-	workersCount := 3
+var workersCount = 3
 
+func main() {
 	queues := make([]chan struct{}, workersCount)
 
-	for i := 0; i < workersCount; i++ {
+	for i := 0; i < len(queues); i++ {
 		queues[i] = make(chan struct{})
 
 		go func(i int) {
 			for {
-				queue := queues[i]
+				<-queues[i]
 
-				<-queue
-
-				fmt.Println(i + 1)
-
+				fmt.Printf("this is worker %d \n", i+1)
 				time.Sleep(time.Second)
 
 				queues[(i+1)%workersCount] <- struct{}{}
