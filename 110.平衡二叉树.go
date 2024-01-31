@@ -8,7 +8,7 @@
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
- *     Val int	
+ *     Val int
  *     Left *TreeNode
  *     Right *TreeNode
  * }
@@ -22,11 +22,20 @@ func isBalanced(root *TreeNode) bool {
 }
 
 func height(node *TreeNode) int {
-	if node == nil {
-		return 0
-	}
+	var maxDepth int
+	var dfs func(node *TreeNode, depth int)
+	dfs = func(node *TreeNode, depth int) {
+		if node == nil {
+			return
+		}
 
-	return max(height(node.Left), height(node.Right))+1
+		depth++
+		maxDepth = max(maxDepth, depth)
+		dfs(node.Left, depth)
+		dfs(node.Right, depth)
+	}
+	dfs(node, 0)
+	return maxDepth
 }
 
 func abs(x int) int {

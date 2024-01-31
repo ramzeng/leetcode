@@ -25,13 +25,15 @@ func connect(root *Node) *Node {
 	for len(queue) > 0 {
 		size := len(queue)
 
-		preNode := queue[0]
+		var preNode *Node
 		for i := 0; i < size; i++ {
 			p := queue[0]
 			queue = queue[1:]
 
-			if i > 0 {
+			if preNode != nil {
 				preNode.Next = p
+				preNode = p
+			} else {
 				preNode = p
 			}
 

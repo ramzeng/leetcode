@@ -15,7 +15,7 @@
  */
 func maxAncestorDiff(root *TreeNode) int {
 	var maxDiff int
-    var f func(node *TreeNode, minValue, maxValue int)
+	var f func(node *TreeNode, minValue, maxValue int)
 	f = func(node *TreeNode, minValue, maxValue int) {
 		if node == nil {
 			return
@@ -42,5 +42,6 @@ func abs(x int) int {
 		return x
 	}
 }
+
 // @lc code=end
 

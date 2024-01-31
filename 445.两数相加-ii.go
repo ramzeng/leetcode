@@ -13,12 +13,13 @@
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	var head, tail *ListNode
+	dummyNode := &ListNode{}
+	current := dummyNode
 
 	var sum, carry int
 
-	l1 = reverseList(l1)
-	l2 = reverseList(l2)
+	l1 = reverseNodeList(l1)
+	l2 = reverseNodeList(l2)
 
 	for l1 != nil || l2 != nil {
 		var x, y int
@@ -33,26 +34,21 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			l2 = l2.Next
 		}
 
-		sum = x+y+carry
+		sum = x + y + carry
 		sum, carry = sum%10, sum/10
 
-		if head == nil {
-			tail = &ListNode{Val: sum}
-			head = &ListNode{Next: tail}
-		} else {
-			tail.Next = &ListNode{Val: sum}
-			tail = tail.Next
-		}
+		current.Next = &ListNode{Val: sum}
+		current = current.Next
 	}
 
 	if carry > 0 {
-		tail.Next = &ListNode{Val: carry}
+		current.Next = &ListNode{Val: carry}
 	}
 
-	return reverseList(head.Next)
+	return reverseNodeList(dummyNode.Next)
 }
 
-func reverseList(head *ListNode) *ListNode {
+func reverseNodeList(head *ListNode) *ListNode {
 	var prev, current *ListNode
 	current = head
 
@@ -60,10 +56,11 @@ func reverseList(head *ListNode) *ListNode {
 		next := current.Next
 		current.Next = prev
 		prev = current
-		current =next
+		current = next
 	}
 
 	return prev
 }
+
 // @lc code=end
 

@@ -6,22 +6,19 @@
 
 // @lc code=start
 func removeDuplicates(nums []int) int {
-	var f func(k int) int
+	k := 2
+	n := len(nums)
+	slow, fast := 0, 0
 
-	f = func(k int) int {
-		u := 0
-
-		for i := 0; i < len(nums); i++ {
-			if u < k || nums[u-k] != nums[i] {
-				nums[u] = nums[i]
-				u++
-			}
+	for ; fast < n; fast++ {
+		if slow < k || nums[slow-k] != nums[fast] {
+			nums[slow] = nums[fast]
+			slow++
 		}
-
-		return u
 	}
 
-	return f(2)
+	return slow
 }
+
 // @lc code=end
 

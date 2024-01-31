@@ -8,39 +8,28 @@
 func combinationSum3(k int, n int) [][]int {
 	var paths [][]int
 	var path []int
-	var dfs func(i int)
+	var dfs func(i int, target int)
 
-	dfs = func(i int) {
-		d := k-len(path)
-
-		if i < d || d < 0 {
+	dfs = func(i int, target int) {
+		if len(path) > k {
 			return
 		}
 
-		if d == 0 && sum(path) == n {
+		if target == 0 && len(path) == k {
 			paths = append(paths, append([]int{}, path...))
 			return
 		}
 
-		for j := i; j >= 1; j-- {
+		for j := i; j < 10; j++ {
 			path = append(path, j)
-			dfs(j-1)
+			dfs(j+1, target-j)
 			path = path[:len(path)-1]
 		}
 	}
 
-	dfs(9)
+	dfs(1, n)
 
 	return paths
-}
-
-func sum(path []int) int {
-	sum := 0
-	for _, v := range path {
-		sum += v
-	}
-
-	return sum
 }
 
 // @lc code=end

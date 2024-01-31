@@ -20,12 +20,15 @@ func lcaDeepestLeaves(root *TreeNode) *TreeNode {
 	var dfs func(node *TreeNode, depth int) int
 	dfs = func(node *TreeNode, depth int) int {
 		if node == nil {
-			maxDepth = max(maxDepth, depth)
 			return depth
 		}
 
-		leftMaxDepth := dfs(node.Left, depth+1)
-		rightMaxDepth := dfs(node.Right, depth+1)
+		depth++
+		if depth > maxDepth {
+			maxDepth = depth
+		}
+		leftMaxDepth := dfs(node.Left, depth)
+		rightMaxDepth := dfs(node.Right, depth)
 
 		if leftMaxDepth == maxDepth && rightMaxDepth == maxDepth {
 			answer = node
@@ -38,5 +41,6 @@ func lcaDeepestLeaves(root *TreeNode) *TreeNode {
 
 	return answer
 }
+
 // @lc code=end
 
