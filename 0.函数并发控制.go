@@ -8,22 +8,20 @@ import (
 var c = make(chan struct{}, 10)
 
 func main() {
-	for {
-		for i := 0; i < 100; i++ {
-			go func(i int) {
+	for i := 0; i < 100; i++ {
+		go func(i int) {
+			for {
 				invoke(i)
-			}(i)
-		}
-
-		time.Sleep(time.Second * 30)
+			}
+		}(i)
 	}
+
+	select {}
 }
 
 func invoke(i int) {
 	c <- struct{}{}
-
-	fmt.Printf("caller %d invoke function...\n", i)
+	fmt.Printf("this is caller %d invoke\n", i)
 	time.Sleep(time.Second)
-
 	<-c
 }

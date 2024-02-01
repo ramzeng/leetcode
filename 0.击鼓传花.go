@@ -12,10 +12,11 @@ func main() {
 
 	for i := 0; i < workersCount; i++ {
 		queue[i] = make(chan struct{})
+
 		go func(i int) {
 			for {
 				<-queue[i]
-				fmt.Printf("this is worker %d\n", i+1)
+				fmt.Println(i + 1)
 				time.Sleep(time.Second)
 				queue[(i+1)%workersCount] <- struct{}{}
 			}
@@ -23,6 +24,5 @@ func main() {
 	}
 
 	queue[0] <- struct{}{}
-
 	select {}
 }
