@@ -12,15 +12,14 @@ func sortArray(nums []int) []int {
 	// 		return
 	// 	}
 
-	// 	mid := nums[left+(right-left)/2]
+	// 	pivot := nums[left+(right-left)/2]
 	// 	i, j := left, right
 
 	// 	for i <= j {
-	// 		for nums[i] < mid {
+	// 		for nums[i] < pivot {
 	// 			i++
 	// 		}
-
-	// 		for nums[j] > mid {
+	// 		for nums[j] > pivot {
 	// 			j--
 	// 		}
 
@@ -36,6 +35,7 @@ func sortArray(nums []int) []int {
 	// }
 
 	// quickSort(nums, 0, len(nums)-1)
+
 	// return nums
 
 	var mergeSort func(nums []int, left, right int)
@@ -48,7 +48,8 @@ func sortArray(nums []int) []int {
 		mergeSort(nums, left, mid)
 		mergeSort(nums, mid+1, right)
 
-		i, j, k := left, mid+1, 0
+		i, j := left, mid+1
+		k := 0
 		sortedNums := make([]int, right-left+1)
 
 		for ; i <= mid && j <= right; k++ {
@@ -71,7 +72,7 @@ func sortArray(nums []int) []int {
 			j++
 		}
 
-		for i := 0; i < len(sortedNums); i++ {
+		for i := 0; i < k; i++ {
 			nums[left+i] = sortedNums[i]
 		}
 	}
