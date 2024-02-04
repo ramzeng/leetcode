@@ -15,48 +15,49 @@
 import "container/heap"
 
 func mergeKLists(lists []*ListNode) *ListNode {
-	m := make(MinHeap, 0)
-	heap.Init(&m)
+	h := make(MaxHeap, 0)
+	heap.Init(&h)
 
-	for i := 0; i < len(lists); i++ {
-		for current := lists[i]; current != nil; current = current.Next {
-			heap.Push(&m, current.Val)
+	for _, list := range lists {
+		for list != nil {
+			heap.Push(&h, list.Val)
+			list = list.Next
 		}
 	}
 
 	dummyNode := &ListNode{}
 	current := dummyNode
 
-	for m.Len() > 0 {
-		current.Next = &ListNode{Val: heap.Pop(&m).(int)}
+	for h.Len() > 0 {
+		current.Next = &ListNode{Val: heap.Pop(&h).(int)}
 		current = current.Next
 	}
 
 	return dummyNode.Next
 }
 
-type MinHeap []int
+type MaxHeap []int
 
-func (m *MinHeap) Len() int {
+func (m *MaxHeap) Len() int {
 	return len(*m)
 }
 
-func (m *MinHeap) Less(i, j int) bool {
+func (m *MaxHeap) Less(i, j int) bool {
 	return (*m)[i] < (*m)[j]
 }
 
-func (m *MinHeap) Swap(i, j int) {
+func (m *MaxHeap) Swap(i, j int) {
 	(*m)[i], (*m)[j] = (*m)[j], (*m)[i]
 }
 
-func (m *MinHeap) Push(x interface{}) {
+func (m *MaxHeap) Push(x interface{}) {
 	*m = append(*m, x.(int))
 }
 
-func (m *MinHeap) Pop() interface{} {
-	tail := (*m)[m.Len()-1]
+func (m *MaxHeap) Pop() interface{} {
+	x := (*m)[m.Len()-1]
 	*m = (*m)[:m.Len()-1]
-	return tail
+	return x
 }
 
 // @lc code=end
