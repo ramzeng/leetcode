@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -24,9 +25,13 @@ type Item struct {
 
 type Store struct {
 	items map[int]*Item
+	mu    sync.Mutex
 }
 
 func (s *Store) Get(key int) int {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	if item, ok := s.items[key]; ok {
 		if item.expiredAt.Before(time.Now()) {
 			delete(s.items, key)
@@ -39,6 +44,9 @@ func (s *Store) Get(key int) int {
 }
 
 func (s *Store) Set(key, value int, expiredAt time.Time) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	if item, ok := s.items[key]; ok {
 		item.value = value
 		item.expiredAt = expiredAt

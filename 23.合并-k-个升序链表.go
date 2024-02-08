@@ -15,12 +15,12 @@
 import "container/heap"
 
 func mergeKLists(lists []*ListNode) *ListNode {
-	h := make(MaxHeap, 0)
-	heap.Init(&h)
+	m := make(MaxHeap, 0)
+	heap.Init(&m)
 
 	for _, list := range lists {
 		for list != nil {
-			heap.Push(&h, list.Val)
+			heap.Push(&m, list.Val)
 			list = list.Next
 		}
 	}
@@ -28,8 +28,8 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	dummyNode := &ListNode{}
 	current := dummyNode
 
-	for h.Len() > 0 {
-		current.Next = &ListNode{Val: heap.Pop(&h).(int)}
+	for m.Len() > 0 {
+		current.Next = &ListNode{Val: heap.Pop(&m).(int)}
 		current = current.Next
 	}
 

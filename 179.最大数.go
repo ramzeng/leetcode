@@ -13,7 +13,7 @@ func largestNumber(nums []int) string {
 		strs[i] = strconv.Itoa(nums[i])
 	}
 
-	sort.Slice(strs, func(i, j int) bool {
+	sort.SliceStable(strs, func(i, j int) bool {
 		return strs[i]+strs[j] > strs[j]+strs[i]
 	})
 

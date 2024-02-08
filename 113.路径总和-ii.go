@@ -32,7 +32,6 @@ func pathSum(root *TreeNode, targetSum int) [][]int {
 
 		dfs(node.Left, sum, path)
 		dfs(node.Right, sum, path)
-		// 这里可以不写这一行，因为每次递下去都会产生一个新的切片
 		path = path[:len(path)-1]
 	}
 	dfs(root, 0, path)

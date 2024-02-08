@@ -22,7 +22,7 @@ func maxSubArray(nums []int) int {
 	// 动态规划
 	n := len(nums)
 	dp := make([]int, n+1)
-	answer := math.MinInt
+	maxSum := math.MinInt
 
 	for i := 0; i < n; i++ {
 		dp[i+1] = nums[i]
@@ -31,10 +31,10 @@ func maxSubArray(nums []int) int {
 			dp[i+1] = dp[i] + nums[i]
 		}
 
-		answer = max(answer, dp[i+1])
+		maxSum = max(maxSum, dp[i+1])
 	}
 
-	return answer
+	return maxSum
 
 	// 动态规划，空间优化
 	// n := len(nums)
